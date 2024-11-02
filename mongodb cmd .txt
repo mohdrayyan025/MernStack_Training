@@ -1,0 +1,216 @@
+Microsoft Windows [Version 10.0.22631.4317]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Program Files\MongoDB\mongosh-2.3.1-win32-x64\bin>mongosh
+Current Mongosh Log ID: 671873978589411c4fc73bf7
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1
+Using MongoDB:          8.0.0
+Using Mongosh:          2.3.1
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-10-21T17:01:07.765+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin   40.00 KiB
+config  72.00 KiB
+local   88.00 KiB
+test> show test
+MongoshInvalidInputError: [COMMON-10001] 'test' is not a valid argument for "show".
+test> show dbs
+admin      40.00 KiB
+config    108.00 KiB
+local      88.00 KiB
+project1    8.00 KiB
+test> show dbs
+admin      40.00 KiB
+config    108.00 KiB
+local      88.00 KiB
+project1  176.00 KiB
+test> use project1
+switched to db project1
+project1> show collections
+p1
+project1> db.createCollection("user")
+{ ok: 1 }
+project1> show collections
+p1
+user
+project1> db.user.insertOne({name:"Bob",age:23,branch:"IT"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('6718795b8589411c4fc73bf8')
+}
+project1> db.user.insertOne({name:"Joy",age:22,branch:"CSE"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('671879e38589411c4fc73bf9')
+}
+project1> db.user.insertMany([{name:"Joy",age:22,branch:"CSE"},{name:"Rob",age:20,branch:"ECE"},{name:"COB",age:19,branch:"EEE"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('67187a8c8589411c4fc73bfa'),
+    '1': ObjectId('67187a8c8589411c4fc73bfb'),
+    '2': ObjectId('67187a8c8589411c4fc73bfc')
+  }
+}
+project1> db.user.find()
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  },
+  {
+    _id: ObjectId('671879e38589411c4fc73bf9'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfa'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfb'),
+    name: 'Rob',
+    age: 20,
+    branch: 'ECE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfc'),
+    name: 'COB',
+    age: 19,
+    branch: 'EEE'
+  }
+]
+project1> db.user.find({})
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  },
+  {
+    _id: ObjectId('671879e38589411c4fc73bf9'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfa'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfb'),
+    name: 'Rob',
+    age: 20,
+    branch: 'ECE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfc'),
+    name: 'COB',
+    age: 19,
+    branch: 'EEE'
+  }
+]
+project1> db.user.find({age:{$lt:30}})
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  },
+  {
+    _id: ObjectId('671879e38589411c4fc73bf9'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfa'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfb'),
+    name: 'Rob',
+    age: 20,
+    branch: 'ECE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfc'),
+    name: 'COB',
+    age: 19,
+    branch: 'EEE'
+  }
+]
+project1> db.user.find({age:{$lt:30},name:"Bob"})
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  }
+]
+project1> db.user.find({name:{$eq:"Bob"}})
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  }
+]
+project1> db.user.find({age:{$lt:20}})
+[
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfc'),
+    name: 'COB',
+    age: 19,
+    branch: 'EEE'
+  }
+]
+project1> db.user.find({$and:[{age: {$gt:20},{age: {$lt: 40}}]})
+Uncaught:
+SyntaxError: Unexpected token (1:35)
+
+> 1 | db.user.find({$and:[{age: {$gt:20},{age: {$lt: 40}}]})
+    |                                    ^
+  2 |
+
+project1> db.user.find({$and:[{age: {$gt:20}},{age: {$lt: 40}}]})
+[
+  {
+    _id: ObjectId('6718795b8589411c4fc73bf8'),
+    name: 'Bob',
+    age: 23,
+    branch: 'IT'
+  },
+  {
+    _id: ObjectId('671879e38589411c4fc73bf9'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  },
+  {
+    _id: ObjectId('67187a8c8589411c4fc73bfa'),
+    name: 'Joy',
+    age: 22,
+    branch: 'CSE'
+  }
+]
+project1> db.user.find({$and:[{age: {$gt:20}},{age: {$lt: 40}}]})

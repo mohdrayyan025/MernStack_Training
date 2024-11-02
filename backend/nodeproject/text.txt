@@ -1,0 +1,28 @@
+app.get('/',(req,res)=>)
+
+app.get('search', ()=>{
+
+})
+
+app.post('add user',()=>{
+
+})
+
+
+app.delete('delete user')
+
+app.put
+
+
+
+
+assigment
+name,
+textfiled,  data go to server 
+button
+
+
+
+
+
+connnect you monog

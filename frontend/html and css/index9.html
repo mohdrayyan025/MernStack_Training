@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.write("Patten-1 <br> <br>");
+        let m=10;
+        for(i=1;i<=m;i++){
+            for(j=1;j<=m;j++){
+                if(j>=1 && j<=m-i){
+                    document.write(`&nbsp;&nbsp`);
+                }   
+                else{
+                    document.write("*");
+                }
+            }
+            document.write(`<br>`);
+        }
+        
+        document.write("Patten-2 <br> <br>");
+        for(i=1;i<=m;i++){
+            for(j=1;j<=m;j++){
+                if(j>=m-i+1 && j<=m+i-1){
+                    document.write("*");
+                }
+                else{
+                    document.write(`&nbsp`);
+                }
+            }
+            document.write(`<br>`);
+        }
+
+        document.write("Patten-3 <br> <br>");
+        for(i=1;i<=m;i++){
+            for(j=1; j<=m; j++){
+                if(i==1 || i==m){
+                    document.write(`*`);
+                }else if(j==m-i+1){
+                    document.write(`*`);
+                }
+                else{
+                    document.write(`&nbsp;&nbsp;`);
+                }
+            }
+            document.write(`<br>`);
+        }
+
+
+
+
+
+    </script>
+    
+</body>
+</html>

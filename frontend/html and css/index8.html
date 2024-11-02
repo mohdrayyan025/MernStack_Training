@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let str1= "EDUnet<br>";
+        let str2= "EDUnet<br>";
+        let str3= "EDUnet<br>";
+        let str4= "EDUnet <br> <br>";
+
+        let a=10
+
+        let str5= "Value of a : ${a} <br>";
+        let str6= "Value of a : $(a) <br>";
+        let str7= `Value of a : ${a} <br>`;
+
+        document.write(str1);
+        document.write(str2);
+        document.write(str3);
+        document.write(str4);
+
+        document.write(str5);
+        document.write(str6);
+        document.write(str7);
+        document.write('<input type="text" placeholder="Name"> <br> <br>')
+        let b="Even"
+        let c="Odd"
+
+        
+        if(a%2!== 0){
+            document.write(`a is : ${c}`);
+        }else document.write(`a is : ${b} <br><br>`);
+
+        let n=10;
+        for(i=1;i<=5;i++){
+            document.write(`10 X ${i} = ${10*i} <br>`);
+        }
+        document.write('<br>')
+        let j=1;
+        while(j<=5){
+            document.write(`${n} X ${j} = ${n*j} <br>`);
+            j++;
+        }
+
+        let m=5;
+        for(i=1;i<=m;i++){
+            for(j=1;j<=m;i++){
+                if(j>=1 & j<=m-i){
+                    document.write(`$nbsp;$nbsp`);
+                }   
+                else{
+                    document.write("*");
+                }
+            }
+            document.write(`<br>`);
+        }
+    </script>
+</body>
+</html>
